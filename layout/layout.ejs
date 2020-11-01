@@ -4,7 +4,12 @@
     <div id="loader"></div>
     <%- body %>
 </body>
+
+<script>
+    window.ajaxLoadList = [];
+</script>
 <%- partial('_partial/scripts', null, {cache: true}) %>
 <%- partial('_partial/mathjax', null, {cache: true}) %>
 <%- partial("_partial/google-analytics", {cache: true}) %>
+
 </html>

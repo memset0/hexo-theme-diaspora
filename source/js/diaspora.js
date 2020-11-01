@@ -19,6 +19,7 @@ var Diaspora = {
             success: function(data) {
                 f(data);
                 xhrUrl = '';
+                ajaxLoadList.forEach(loader => { loader() });
             },
             error: function(a, b, c) {
                 if (b == 'abort') {
@@ -294,8 +295,10 @@ $(function() {
             $('.scrollbar').width(width)
             if (wt > 80 && window.innerWidth > 800) {
                 $('.subtitle').fadeIn()
+                $('#top').addClass('shadowed');
             } else {
                 $('.subtitle').fadeOut()
+                $('#top').removeClass('shadowed');
             }
         }
     })
@@ -487,18 +490,17 @@ $(function() {
                 if ($('#preview').hasClass('show')) {
                     history.back();
                 } else {
-                    location.href = $('.icon-home').data('url')
+                    location.pathname = $('.icon-home').data('url')
                 }
                 return false;
                 break;
             // qrcode
             case (tag.indexOf('icon-scan') != -1):
-                if ($('.icon-scan').hasClass('tg')) {
-                    $('#qr').toggle()
-                } else {
+                if (!$('.icon-scan').hasClass('tg')) {
                     $('.icon-scan').addClass('tg')
-                    $('#qr').qrcode({ width: 128, height: 128, text: location.href}).toggle()
+                    $('#qr').qrcode({ width: 128, height: 128, text: location.href})
                 }
+                $('#qr').fadeToggle();
                 return false;
                 break;
             // audio play

@@ -11,13 +11,13 @@
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="<%- theme.autoplay || page.autoplay || "false" %>">
                 <source type="audio/mpeg" src="<%- page.mp3 %>">
             </audio>
-            <% if (page.mp3 == '' | page.mp3 == null){%>
+            <% if (page.mp3 == '' | page.mp3 == null) {%>
                 <ul id="audio-list" style="display:none">
                     <% for (var i in theme.mp3){ %>
-                        <% if (theme.mp3[i].indexOf('http') == 0){%>
+                        <% if (theme.mp3[i].startsWith('http')) {%>
                             <li title='<%- i %>' data-url='<%- theme.mp3[i] %>'></li>
                         <%} else {%>
-                            <li title='<%- i %>' data-url='<%- config.root + theme.mp3[i] %>'></li>
+                            <li title='<%- i %>' data-url='<%- config.root + theme.mp3[i].slice(1) %>'></li>
                         <%}%>
                     <%}%>
                 </ul>
