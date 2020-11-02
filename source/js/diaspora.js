@@ -131,6 +131,14 @@ var Diaspora = {
     }, 0);
   },
   player: function () {
+    function saveCurrentTime(src, time) {
+      localStorage.setItem('audio-' + $.md5(src), String(time));
+    }
+    function loadCurrentTime(src) {
+      var data = localStorage.getItem('audio-' + $.md5(src));
+      console.log(src, data, isNaN(data) ? 0 : parseInt(data));
+      return isNaN(parseInt(data)) ? 0 : parseInt(data);
+    }
     var p = $('#audio');
     if (!p.length) {
       $('.icon-play').css({
@@ -143,13 +151,21 @@ var Diaspora = {
     if (sourceSrc == '' && p[0].src == '') {
       audiolist = $('#audio-list li');
       mp3 = audiolist.eq([Math.floor(Math.random() * audiolist.size())])
-      p[0].src = mp3.data('url')
+      p[0].src = mp3.data('url');
+      p[0].load();
     }
     if (p.eq(0).data("autoplay") == true) {
       p[0].play();
     }
+    console.log(p[0]);
     p.on({
+      'loadedmetadata': function () {
+        // p[0].currentTime = loadCurrentTime(p[0].src);
+      },
       'timeupdate': function () {
+        if (p[0].currentTime > 0) {
+          saveCurrentTime(p[0].src, p[0].currentTime);
+        }
         var progress = p[0].currentTime / p[0].duration * 100;
         $('.bar').css('width', progress + '%');
         if (progress / 5 <= 1) {
