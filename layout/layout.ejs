@@ -1,16 +1,14 @@
 <%- partial('_partial/head') %>
 <%- partial('_partial/tips') %>
 <body class="loading">
-    <span id="config-title" style="display:none"><%= config.title %></span>
-    <div id="loader">123456</div>
-    <%- body %>
+  <span id="config-title" style="display:none"><%= config.title %></span>
+  <div id="loader"></div>
+  <%- body %>
 </body>
-
 <script>
-    window.ajaxLoadList = [];
+  window.ajaxLoadList = [];
 </script>
 <%- partial('_partial/scripts', null, {cache: true}) %>
 <%- partial('_partial/mathjax', null, {cache: true}) %>
 <%- partial("_partial/google-analytics", {cache: true}) %>
-
 </html>

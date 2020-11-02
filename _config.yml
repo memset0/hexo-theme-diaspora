@@ -87,19 +87,19 @@ beian:
 # Gitalk 评论插件（https://github.com/gitalk/gitalk）
 gitalk:
   # 是否启用评论功能
-  enable: false
+  enable: true
   # 是否自动展开评论框
-  autoExpand: false
+  autoExpand: true
   # 应用编号
-  clientID: ''
+  clientID: 9a58625d1ff4c0e473ac
   # 应用秘钥
-  clientSecret: ''
+  clientSecret: 6a26bac24632719df98b6c266dbb57931253ebf1
   # issue仓库名
-  repo: ''
+  repo: new-blog
   # Github名
-  owner: ''
+  owner: memset0
   # Github名
-  admin: ['']
+  admin: [memset0]
   # Ensure uniqueness and length less than 50
   id: location.pathname
   # Facebook-like distraction free mode
